@@ -2,14 +2,21 @@ import json
 import urllib.request
 import requests
 from bs4 import BeautifulSoup
+from pathlib import Path
 
 
 def download_images(image_url_list):
     session = requests.Session()
+    downloads_folder = Path.home() / "Downloads"
+    target_folder = downloads_folder / "ObituaryPhotos"
+    target_folder.mkdir(parents=True, exist_ok=True)
+
     for i, image_url in enumerate(image_url_list):
         file_name = f"photo{i}.jpg"
+        file_path = target_folder / file_name
+
         response = session.get(image_url)
-        with open(file_name, 'wb') as file:
+        with open(file_path, 'wb') as file:
             file.write(response.content)
 
 
