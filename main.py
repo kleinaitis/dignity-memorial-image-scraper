@@ -5,21 +5,6 @@ from bs4 import BeautifulSoup
 from pathlib import Path
 
 
-def download_images(image_url_list):
-    session = requests.Session()
-    downloads_folder = Path.home() / "Downloads"
-    target_folder = downloads_folder / "ObituaryPhotos"
-    target_folder.mkdir(parents=True, exist_ok=True)
-
-    for i, image_url in enumerate(image_url_list):
-        file_name = f"photo{i}.jpg"
-        file_path = target_folder / file_name
-
-        response = session.get(image_url)
-        with open(file_path, 'wb') as file:
-            file.write(response.content)
-
-
 def fetch_memory_list(obituary_url):
 
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0'}
@@ -53,6 +38,21 @@ def build_image_urls(site_entries):
             url_list.append(url)
 
     return url_list
+
+
+def download_images(image_url_list):
+    session = requests.Session()
+    downloads_folder = Path.home() / "Downloads"
+    target_folder = downloads_folder / "ObituaryPhotos"
+    target_folder.mkdir(parents=True, exist_ok=True)
+
+    for i, image_url in enumerate(image_url_list):
+        file_name = f"photo{i}.jpg"
+        file_path = target_folder / file_name
+
+        response = session.get(image_url)
+        with open(file_path, 'wb') as file:
+            file.write(response.content)
 
 
 memory_list = fetch_memory_list("https://www.dignitymemorial.com/obituaries/dallas-tx/richard-cole-7245321")
