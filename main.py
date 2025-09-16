@@ -1,6 +1,17 @@
 import json
 import urllib.request
+import requests
 from bs4 import BeautifulSoup
+
+
+def download_images(image_url_list):
+    session = requests.Session()
+    for i, image_url in enumerate(image_url_list):
+        file_name = f"photo{i}.jpg"
+        response = session.get(image_url)
+        with open(file_name, 'wb') as file:
+            file.write(response.content)
+
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0'}
 url = "https://www.dignitymemorial.com/obituaries/dallas-tx/richard-cole-7245321"
@@ -27,3 +38,7 @@ for entry in site_entries:
 
         # Join parts with '/' to reconstruct the full URL
         url = "/".join(parts)
+
+        url_list.append(url)
+
+download_images(url_list)
