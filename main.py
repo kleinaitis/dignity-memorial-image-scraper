@@ -24,6 +24,10 @@ url_list = []
 for entry in site_entries:
     image_parts = entry["Image"]
     if image_parts is not None:
+        # Get parts of the URL in reverse order (index 13 -> 0)
         parts = [image_parts["FullUrl"][i] for i in range(13, -1, -1)]
+
+        # Join parts with '/' to reconstruct the full URL
         url = "/".join(parts)
+
         print(url)
