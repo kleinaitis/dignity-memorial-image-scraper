@@ -1,8 +1,6 @@
 import json
-import re
 import urllib.request
 from bs4 import BeautifulSoup
-
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0'}
 url = "https://www.dignitymemorial.com/obituaries/dallas-tx/richard-cole-7245321"
@@ -29,5 +27,3 @@ for entry in site_entries:
 
         # Join parts with '/' to reconstruct the full URL
         url = "/".join(parts)
-
-        print(url)
