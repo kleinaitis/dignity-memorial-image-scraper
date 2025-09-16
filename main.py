@@ -22,8 +22,8 @@ site_entries = parse["props"]["pageProps"]["memoryData"]["MemoryList"]
 url_list = []
 
 for entry in site_entries:
-    link = entry["Image"]
-    if link is not None:
-        parts = [link["FullUrl"][i] for i in range(13, -1, -1)]
+    image_parts = entry["Image"]
+    if image_parts is not None:
+        parts = [image_parts["FullUrl"][i] for i in range(13, -1, -1)]
         url = "/".join(parts)
         print(url)
