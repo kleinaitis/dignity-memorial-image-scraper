@@ -1,8 +1,10 @@
+import argparse
 import json
 import urllib.request
 import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
+import sys
 
 
 def fetch_memory_list(obituary_url):
@@ -31,10 +33,8 @@ def build_image_urls(site_entries):
         if image_parts is not None:
             # Get parts of the URL in reverse order (index 13 -> 0)
             parts = [image_parts["FullUrl"][i] for i in range(13, -1, -1)]
-
             # Join parts with '/' to reconstruct the full URL
             url = "/".join(parts)
-
             url_list.append(url)
 
     return url_list
@@ -55,6 +55,22 @@ def download_images(image_url_list):
             file.write(response.content)
 
 
-memory_list = fetch_memory_list("https://www.dignitymemorial.com/obituaries/dallas-tx/richard-cole-7245321")
-url_list = build_image_urls(memory_list)
-download_images(url_list)
+def main(obituary_url):
+    memory_list = fetch_memory_list(obituary_url)
+    url_list = build_image_urls(memory_list)
+    download_images(url_list)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Download all images from a Dignity Memorial obituary page.",
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument(
+        "url",
+        help="The full URL of the obituary page (e.g., https://www.dignitymemorial.com/obituaries/...)."
+    )
+    args = parser.parse_args()
+
+    main(args.url)
+
