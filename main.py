@@ -64,7 +64,8 @@ def main(obituary_url):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Download all images from a Dignity Memorial obituary page.",
-        formatter_class=argparse.RawDescriptionHelpFormatter
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog = "Example:\n  python main.py https://www.dignitymemorial.com/obituaries/john-doe-12345",
     )
     parser.add_argument(
         "url",
