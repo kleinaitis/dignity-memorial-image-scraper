@@ -4,7 +4,6 @@ import urllib.request
 import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
-import sys
 
 
 def fetch_memory_list(obituary_url):
