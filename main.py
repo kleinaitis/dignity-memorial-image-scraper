@@ -33,8 +33,13 @@ def build_image_urls(site_entries):
         if image_parts is not None:
             # Get parts of the URL in reverse order (index 13 -> 0)
             parts = [image_parts["FullUrl"][i] for i in range(13, -1, -1)]
+
             # Join parts with '/' to reconstruct the full URL
             url = "/".join(parts)
+
+            if not url.startswith("http"):
+                url = "https:/" + url
+
             url_list.append(url)
 
     return url_list
