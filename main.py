@@ -37,6 +37,8 @@ def build_image_urls(site_entries):
             # Join parts with '/' to reconstruct the full URL
             url = "/".join(parts)
 
+            # "Condolences" image URLs are returned without a scheme (no http:// or https://)
+            # Add https:/ since joining parts produces one extra / at the end
             if not url.startswith("http"):
                 url = "https:/" + url
 
