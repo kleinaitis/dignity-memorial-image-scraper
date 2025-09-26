@@ -7,10 +7,6 @@ from bs4 import BeautifulSoup
 from pathlib import Path
 
 
-def get_obituary_link():
-    print("Enter")
-
-
 def fetch_memory_list(obituary_url):
 
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0'}
