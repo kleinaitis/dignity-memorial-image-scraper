@@ -8,9 +8,9 @@ This tool allows you to download all images from a Dignity Memorial obituary pag
 
 ## How It Works
 
-1. You provide the URL of a Dignity Memorial obituary page.  
-2. The tool fetches all the images linked on that page.  
-3. It saves them to a folder called **`ObituaryPhotos`** inside your **Downloads** directory.  
+1. You provide the URL of a Dignity Memorial obituary page
+2. The tool fetches all the images linked on that page
+3. It saves them to a folder called `ObituaryPhotos` inside your `Downloads` directory 
 
 This makes it easy to quickly gather all the photos in one place without manually saving each image.
 
