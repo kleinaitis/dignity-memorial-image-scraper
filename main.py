@@ -1,9 +1,14 @@
 import argparse
 import json
+import sys
 import urllib.request
 import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
+
+
+def get_obituary_link():
+    print("Enter")
 
 
 def fetch_memory_list(obituary_url):
@@ -73,11 +78,19 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog = "Example:\n  python main.py https://www.dignitymemorial.com/obituaries/john-doe-12345",
     )
-    parser.add_argument(
-        "url",
-        help="The full URL of the obituary page (e.g., https://www.dignitymemorial.com/obituaries/...)."
-    )
+    parser.add_argument("url", nargs="?", help="The full URL of the obituary page.")
     args = parser.parse_args()
 
-    main(args.url)
+    if args.url:
+        obituary_url = args.url
+    else:
+        print("Paste the obituary URL below:")
+        obituary_url = input("> ").strip()
 
+    main(obituary_url)
+
+    # Prevent window from closing instantly in .exe
+    if getattr(sys, 'frozen', False):
+        input(
+            "\n✅ Images successfully downloaded to the 'ObituaryPhotos' folder inside your Downloads "
+            "folder.\n\nPress Enter to close...")
